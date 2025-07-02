@@ -141,8 +141,12 @@ export default function XcodeBuildMCPLanding() {
 
           {/* Mobile Navigation Overlay */}
           {isMobileMenuOpen && (
-            <div className="md:hidden fixed inset-0 z-30 bg-gray-900/80 backdrop-blur-sm">
-              <div className="bg-gray-900 border-b border-gray-800 mt-[73px]">
+            <>
+              {/* Backdrop */}
+              <div className="md:hidden fixed inset-0 z-30 bg-gray-900/80 backdrop-blur-sm" />
+
+              {/* Menu Content */}
+              <div className="md:hidden fixed top-[73px] left-0 right-0 z-40 bg-gray-900 border-b border-gray-800">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
                   <nav className="flex flex-col space-y-6">
                     <button
@@ -180,7 +184,7 @@ export default function XcodeBuildMCPLanding() {
                   </nav>
                 </div>
               </div>
-            </div>
+            </>
           )}
         </div>
       </header>
