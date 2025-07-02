@@ -73,9 +73,7 @@ export default function XcodeBuildMCPLanding() {
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 
-  const handleMobileNavClick = (href: string) => {
-    setIsMobileMenuOpen(false)
-
+  const handleNavClick = (href: string) => {
     if (href.startsWith("#")) {
       const element = document.querySelector(href)
       if (element) {
@@ -85,6 +83,11 @@ export default function XcodeBuildMCPLanding() {
         })
       }
     }
+  }
+
+  const handleMobileNavClick = (href: string) => {
+    setIsMobileMenuOpen(false)
+    handleNavClick(href)
   }
 
   return (
@@ -105,18 +108,30 @@ export default function XcodeBuildMCPLanding() {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              <Link href="#features" className="text-gray-300 hover:text-white transition-colors">
+              <button
+                onClick={() => handleNavClick("#features")}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
                 Features
-              </Link>
-              <Link href="#installation" className="text-gray-300 hover:text-white transition-colors">
+              </button>
+              <button
+                onClick={() => handleNavClick("#installation")}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
                 Installation
-              </Link>
-              <Link href="#usage" className="text-gray-300 hover:text-white transition-colors">
+              </button>
+              <button
+                onClick={() => handleNavClick("#usage")}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
                 Usage Examples
-              </Link>
-              <Link href="#contributing" className="text-gray-300 hover:text-white transition-colors">
+              </button>
+              <button
+                onClick={() => handleNavClick("#contributing")}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
                 Contributing
-              </Link>
+              </button>
             </nav>
 
             <div className="flex items-center space-x-4">
@@ -238,12 +253,10 @@ export default function XcodeBuildMCPLanding() {
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                  asChild
+                  onClick={() => handleNavClick("#installation")}
                 >
-                  <Link href="#installation">
-                    <Download className="w-5 h-5 mr-2" />
-                    Get Started
-                  </Link>
+                  <Download className="w-5 h-5 mr-2" />
+                  Get Started
                 </Button>
                 <Button
                   size="lg"
