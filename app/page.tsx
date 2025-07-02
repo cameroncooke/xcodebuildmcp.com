@@ -73,6 +73,20 @@ export default function XcodeBuildMCPLanding() {
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 
+  const handleMobileNavClick = (href: string) => {
+    setIsMobileMenuOpen(false)
+
+    if (href.startsWith("#")) {
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Header */}
@@ -127,38 +141,34 @@ export default function XcodeBuildMCPLanding() {
 
           {/* Mobile Navigation Overlay */}
           {isMobileMenuOpen && (
-            <div className="md:hidden fixed inset-0 z-40 bg-gray-900/80 backdrop-blur-sm">
+            <div className="md:hidden fixed inset-0 z-30 bg-gray-900/80 backdrop-blur-sm">
               <div className="bg-gray-900 border-b border-gray-800 mt-[73px]">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
                   <nav className="flex flex-col space-y-6">
-                    <Link
-                      href="#features"
-                      className="text-gray-300 hover:text-white transition-colors text-lg"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                    <button
+                      onClick={() => handleMobileNavClick("#features")}
+                      className="text-gray-300 hover:text-white transition-colors text-lg text-left"
                     >
                       Features
-                    </Link>
-                    <Link
-                      href="#installation"
-                      className="text-gray-300 hover:text-white transition-colors text-lg"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                    </button>
+                    <button
+                      onClick={() => handleMobileNavClick("#installation")}
+                      className="text-gray-300 hover:text-white transition-colors text-lg text-left"
                     >
                       Installation
-                    </Link>
-                    <Link
-                      href="#usage"
-                      className="text-gray-300 hover:text-white transition-colors text-lg"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                    </button>
+                    <button
+                      onClick={() => handleMobileNavClick("#usage")}
+                      className="text-gray-300 hover:text-white transition-colors text-lg text-left"
                     >
                       Usage Examples
-                    </Link>
-                    <Link
-                      href="#contributing"
-                      className="text-gray-300 hover:text-white transition-colors text-lg"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                    </button>
+                    <button
+                      onClick={() => handleMobileNavClick("#contributing")}
+                      className="text-gray-300 hover:text-white transition-colors text-lg text-left"
                     >
                       Contributing
-                    </Link>
+                    </button>
                     <Link
                       href="https://github.com/cameroncooke/XcodeBuildMCP"
                       className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors text-lg"
