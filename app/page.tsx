@@ -102,7 +102,9 @@ export default function XcodeBuildMCPLanding() {
   }
 
   const handleNavClick = (href: string) => {
-    if (href.startsWith("#")) {
+    if (href === "#top") {
+      smoothScrollTo(document.body, 800)
+    } else if (href.startsWith("#")) {
       const element = document.querySelector(href)
       if (element) {
         smoothScrollTo(element, 800) // 800ms duration with easing
@@ -123,13 +125,18 @@ export default function XcodeBuildMCPLanding() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <Image src="/logo.png" alt="XcodeBuildMCP" width={32} height={32} className="w-8 h-8" />
-              <div>
-                <span className="text-xl font-bold">XcodeBuildMCP</span>
-                <Badge variant="secondary" className="ml-2 bg-green-900 text-green-300 text-xs">
-                  OSS
-                </Badge>
-              </div>
+              <button
+                onClick={() => handleNavClick("#top")}
+                className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+              >
+                <Image src="/logo.png" alt="XcodeBuildMCP" width={32} height={32} className="w-8 h-8" />
+                <div>
+                  <span className="text-xl font-bold">XcodeBuildMCP</span>
+                  <Badge variant="secondary" className="ml-2 bg-green-900 text-green-300 text-xs">
+                    OSS
+                  </Badge>
+                </div>
+              </button>
             </div>
 
             {/* Desktop Navigation */}
@@ -175,7 +182,7 @@ export default function XcodeBuildMCPLanding() {
                 className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
                 aria-label="Toggle mobile menu"
               >
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                <Menu className="w-6 h-6" />
               </button>
             </div>
           </div>
@@ -188,6 +195,15 @@ export default function XcodeBuildMCPLanding() {
 
               {/* Menu Content */}
               <div className="md:hidden fixed top-[73px] left-0 right-0 z-40 bg-gray-900 border-b border-gray-800">
+                {/* Close button positioned at top right of menu */}
+                <button
+                  onClick={toggleMobileMenu}
+                  className="absolute top-4 right-4 p-2 text-gray-300 hover:text-white transition-colors z-50"
+                  aria-label="Close mobile menu"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
                   <nav className="flex flex-col space-y-6">
                     <button
