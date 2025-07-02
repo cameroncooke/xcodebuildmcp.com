@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -15,52 +17,62 @@ import {
   ExternalLink,
   Copy,
   CheckCircle,
+  Menu,
+  X,
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { useState, useEffect } from "react"
 
-async function getGitHubStats() {
-  try {
-    const response = await fetch("https://api.github.com/repos/cameroncooke/XcodeBuildMCP", {
-      headers: process.env.GITHUB_TOKEN
-        ? {
-            Authorization: `token ${process.env.GITHUB_TOKEN}`,
-          }
-        : {},
-      next: { revalidate: 3600 }, // Cache for 1 hour
-    })
+interface GitHubStats {
+  stars: number
+  forks: number
+}
 
-    if (!response.ok) throw new Error("Failed to fetch GitHub stats")
+export default function XcodeBuildMCPLanding() {
+  const [githubStats, setGithubStats] = useState<GitHubStats>({ stars: 1900, forks: 77 })
+  const [npmVersion, setNpmVersion] = useState("v1.10.4")
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [copiedText, setCopiedText] = useState<string | null>(null)
 
-    const data = await response.json()
-    return {
-      stars: data.stargazers_count,
-      forks: data.forks_count,
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        // Fetch GitHub stats
+        const githubResponse = await fetch("/api/github-stats")
+        if (githubResponse.ok) {
+          const stats = await githubResponse.json()
+          setGithubStats(stats)
+        }
+
+        // Fetch NPM version
+        const npmResponse = await fetch("/api/npm-version")
+        if (npmResponse.ok) {
+          const version = await npmResponse.json()
+          setNpmVersion(version.version)
+        }
+      } catch (error) {
+        console.error("Error fetching stats:", error)
+      }
     }
-  } catch (error) {
-    console.error("Error fetching GitHub stats:", error)
-    return { stars: 1900, forks: 77 } // Fallback values
+
+    fetchStats()
+  }, [])
+
+  const copyToClipboard = async (text: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopiedText(label)
+      setTimeout(() => setCopiedText(null), 2000)
+    } catch (error) {
+      console.error("Failed to copy:", error)
+    }
   }
-}
 
-async function getNPMVersion() {
-  try {
-    const response = await fetch("https://registry.npmjs.org/xcodebuildmcp/latest", {
-      next: { revalidate: 3600 }, // Cache for 1 hour
-    })
-
-    if (!response.ok) throw new Error("Failed to fetch NPM version")
-
-    const data = await response.json()
-    return data.version
-  } catch (error) {
-    console.error("Error fetching NPM version:", error)
-    return "v1.10.4" // Fallback value
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
   }
-}
 
-export default async function XcodeBuildMCPLanding() {
-  const [githubStats, npmVersion] = await Promise.all([getGitHubStats(), getNPMVersion()])
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Header */}
@@ -77,6 +89,7 @@ export default async function XcodeBuildMCPLanding() {
               </div>
             </div>
 
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               <Link href="#features" className="text-gray-300 hover:text-white transition-colors">
                 Features
@@ -95,13 +108,66 @@ export default async function XcodeBuildMCPLanding() {
             <div className="flex items-center space-x-4">
               <Link
                 href="https://github.com/cameroncooke/XcodeBuildMCP"
-                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
+                className="hidden sm:flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
               >
                 <Github className="w-5 h-5" />
                 <span className="hidden sm:inline">GitHub</span>
               </Link>
+
+              {/* Mobile menu button */}
+              <button
+                onClick={toggleMobileMenu}
+                className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
+                aria-label="Toggle mobile menu"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
             </div>
           </div>
+
+          {/* Mobile Navigation */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden border-t border-gray-800 py-4">
+              <nav className="flex flex-col space-y-4">
+                <Link
+                  href="#features"
+                  className="text-gray-300 hover:text-white transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Features
+                </Link>
+                <Link
+                  href="#installation"
+                  className="text-gray-300 hover:text-white transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Installation
+                </Link>
+                <Link
+                  href="#usage"
+                  className="text-gray-300 hover:text-white transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Usage Examples
+                </Link>
+                <Link
+                  href="#contributing"
+                  className="text-gray-300 hover:text-white transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Contributing
+                </Link>
+                <Link
+                  href="https://github.com/cameroncooke/XcodeBuildMCP"
+                  className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Github className="w-5 h-5" />
+                  <span>GitHub</span>
+                </Link>
+              </nav>
+            </div>
+          )}
         </div>
       </header>
 
@@ -323,9 +389,30 @@ export default async function XcodeBuildMCPLanding() {
 }`}
                   </pre>
                 </div>
-                <Button variant="outline" size="sm" className="mt-3 border-gray-600 text-gray-300 bg-transparent">
-                  <Copy className="w-4 h-4 mr-2" />
-                  Copy Configuration
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="mt-3 border-gray-600 text-gray-300 bg-transparent"
+                  onClick={() =>
+                    copyToClipboard(
+                      `{
+  "mcpServers": {
+    "XcodeBuildMCP": {
+      "command": "npx",
+      "args": ["-y", "xcodebuildmcp@latest"]
+    }
+  }
+}`,
+                      "config1",
+                    )
+                  }
+                >
+                  {copiedText === "config1" ? (
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                  ) : (
+                    <Copy className="w-4 h-4 mr-2" />
+                  )}
+                  {copiedText === "config1" ? "Copied!" : "Copy Configuration"}
                 </Button>
               </CardContent>
             </Card>
@@ -354,9 +441,30 @@ export default async function XcodeBuildMCPLanding() {
 }`}
                     </pre>
                   </div>
-                  <Button variant="outline" size="sm" className="mt-3 border-gray-600 text-gray-300 bg-transparent">
-                    <Copy className="w-4 h-4 mr-2" />
-                    Copy
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mt-3 border-gray-600 text-gray-300 bg-transparent"
+                    onClick={() =>
+                      copyToClipboard(
+                        `{
+  "mcpServers": {
+    "XcodeBuildMCP": {
+      "command": "node",
+      "args": ["xcodebuildmcp"]
+    }
+  }
+}`,
+                        "config2",
+                      )
+                    }
+                  >
+                    {copiedText === "config2" ? (
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                    ) : (
+                      <Copy className="w-4 h-4 mr-2" />
+                    )}
+                    {copiedText === "config2" ? "Copied!" : "Copy"}
                   </Button>
                 </CardContent>
               </Card>
@@ -386,9 +494,30 @@ export default async function XcodeBuildMCPLanding() {
 }`}
                     </pre>
                   </div>
-                  <Button variant="outline" size="sm" className="mt-3 border-gray-600 text-gray-300 bg-transparent">
-                    <Copy className="w-4 h-4 mr-2" />
-                    Copy
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mt-3 border-gray-600 text-gray-300 bg-transparent"
+                    onClick={() =>
+                      copyToClipboard(
+                        `{
+  "mcpServers": {
+    "XcodeBuildMCP": {
+      "command": "node",
+      "args": ["path/to/xcodebuildmcp/build/index.js"]
+    }
+  }
+}`,
+                        "config3",
+                      )
+                    }
+                  >
+                    {copiedText === "config3" ? (
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                    ) : (
+                      <Copy className="w-4 h-4 mr-2" />
+                    )}
+                    {copiedText === "config3" ? "Copied!" : "Copy"}
                   </Button>
                 </CardContent>
               </Card>
