@@ -29,6 +29,34 @@ interface GitHubStats {
   forks: number
 }
 
+// Easing function for smooth scroll animation
+const easeInOutCubic = (t: number): number => {
+  return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
+}
+
+// Custom smooth scroll function with easing
+const smoothScrollTo = (element: Element, duration = 1000) => {
+  const targetPosition = element.getBoundingClientRect().top + window.pageYOffset
+  const startPosition = window.pageYOffset
+  const distance = targetPosition - startPosition
+  let startTime: number | null = null
+
+  const animation = (currentTime: number) => {
+    if (startTime === null) startTime = currentTime
+    const timeElapsed = currentTime - startTime
+    const progress = Math.min(timeElapsed / duration, 1)
+    const easedProgress = easeInOutCubic(progress)
+
+    window.scrollTo(0, startPosition + distance * easedProgress)
+
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation)
+    }
+  }
+
+  requestAnimationFrame(animation)
+}
+
 export default function XcodeBuildMCPLanding() {
   const [githubStats, setGithubStats] = useState<GitHubStats>({ stars: 1900, forks: 77 })
   const [npmVersion, setNpmVersion] = useState("v1.10.4")
@@ -77,17 +105,15 @@ export default function XcodeBuildMCPLanding() {
     if (href.startsWith("#")) {
       const element = document.querySelector(href)
       if (element) {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        })
+        smoothScrollTo(element, 800) // 800ms duration with easing
       }
     }
   }
 
   const handleMobileNavClick = (href: string) => {
     setIsMobileMenuOpen(false)
-    handleNavClick(href)
+    // Small delay to allow menu to close before scrolling
+    setTimeout(() => handleNavClick(href), 100)
   }
 
   return (
