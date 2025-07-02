@@ -125,47 +125,51 @@ export default function XcodeBuildMCPLanding() {
             </div>
           </div>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Navigation Overlay */}
           {isMobileMenuOpen && (
-            <div className="md:hidden border-t border-gray-800 py-4">
-              <nav className="flex flex-col space-y-4">
-                <Link
-                  href="#features"
-                  className="text-gray-300 hover:text-white transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Features
-                </Link>
-                <Link
-                  href="#installation"
-                  className="text-gray-300 hover:text-white transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Installation
-                </Link>
-                <Link
-                  href="#usage"
-                  className="text-gray-300 hover:text-white transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Usage Examples
-                </Link>
-                <Link
-                  href="#contributing"
-                  className="text-gray-300 hover:text-white transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Contributing
-                </Link>
-                <Link
-                  href="https://github.com/cameroncooke/XcodeBuildMCP"
-                  className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <Github className="w-5 h-5" />
-                  <span>GitHub</span>
-                </Link>
-              </nav>
+            <div className="md:hidden fixed inset-0 z-40 bg-gray-900/80 backdrop-blur-sm">
+              <div className="bg-gray-900 border-b border-gray-800 mt-[73px]">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                  <nav className="flex flex-col space-y-6">
+                    <Link
+                      href="#features"
+                      className="text-gray-300 hover:text-white transition-colors text-lg"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Features
+                    </Link>
+                    <Link
+                      href="#installation"
+                      className="text-gray-300 hover:text-white transition-colors text-lg"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Installation
+                    </Link>
+                    <Link
+                      href="#usage"
+                      className="text-gray-300 hover:text-white transition-colors text-lg"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Usage Examples
+                    </Link>
+                    <Link
+                      href="#contributing"
+                      className="text-gray-300 hover:text-white transition-colors text-lg"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Contributing
+                    </Link>
+                    <Link
+                      href="https://github.com/cameroncooke/XcodeBuildMCP"
+                      className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors text-lg"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <Github className="w-5 h-5" />
+                      <span>GitHub</span>
+                    </Link>
+                  </nav>
+                </div>
+              </div>
             </div>
           )}
         </div>
@@ -378,7 +382,7 @@ export default function XcodeBuildMCPLanding() {
               </CardHeader>
               <CardContent>
                 <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-gray-300">
+                  <pre className="text-gray-300 text-xs sm:text-sm">
                     {`{
   "mcpServers": {
     "XcodeBuildMCP": {
@@ -427,10 +431,10 @@ export default function XcodeBuildMCPLanding() {
                 </CardHeader>
                 <CardContent>
                   <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm">
-                    <div className="text-green-400">npm install -g xcodebuildmcp</div>
+                    <div className="text-green-400 break-all">npm install -g xcodebuildmcp</div>
                   </div>
                   <div className="bg-gray-900 rounded-lg p-4 mt-2 font-mono text-sm overflow-x-auto">
-                    <pre className="text-gray-300">
+                    <pre className="text-gray-300 text-xs sm:text-sm">
                       {`{
   "mcpServers": {
     "XcodeBuildMCP": {
@@ -478,12 +482,12 @@ export default function XcodeBuildMCPLanding() {
                 </CardHeader>
                 <CardContent>
                   <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm space-y-1">
-                    <div className="text-green-400">git clone https://github.com/</div>
-                    <div className="text-green-400">cameroncooke/XcodeBuildMCP</div>
-                    <div className="text-blue-400">cd XcodeBuildMCP && npm install</div>
+                    <div className="text-green-400 break-all">git clone https://github.com/</div>
+                    <div className="text-green-400 break-all">cameroncooke/XcodeBuildMCP</div>
+                    <div className="text-blue-400 break-all">cd XcodeBuildMCP && npm install</div>
                   </div>
                   <div className="bg-gray-900 rounded-lg p-4 mt-2 font-mono text-sm overflow-x-auto">
-                    <pre className="text-gray-300">
+                    <pre className="text-gray-300 text-xs sm:text-sm">
                       {`{
   "mcpServers": {
     "XcodeBuildMCP": {
