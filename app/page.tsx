@@ -450,8 +450,8 @@ export default function XcodeBuildMCPLanding() {
                 <CardDescription className="text-gray-400">Add to your MCP client configuration</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                  <pre className="text-gray-300 text-xs sm:text-sm">
+                <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm overflow-x-auto max-w-full">
+                  <pre className="text-gray-300 text-xs sm:text-sm whitespace-pre-wrap break-words">
                     {`{
   "mcpServers": {
     "XcodeBuildMCP": {
@@ -490,7 +490,7 @@ export default function XcodeBuildMCPLanding() {
               </CardContent>
             </Card>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-white flex items-center">
@@ -500,10 +500,10 @@ export default function XcodeBuildMCPLanding() {
                 </CardHeader>
                 <CardContent>
                   <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm">
-                    <div className="text-green-400 break-all">npm install -g xcodebuildmcp</div>
+                    <div className="text-green-400 break-all text-xs sm:text-sm">npm install -g xcodebuildmcp</div>
                   </div>
-                  <div className="bg-gray-900 rounded-lg p-4 mt-2 font-mono text-sm overflow-x-auto">
-                    <pre className="text-gray-300 text-xs sm:text-sm">
+                  <div className="bg-gray-900 rounded-lg p-4 mt-2 font-mono text-sm overflow-x-auto max-w-full">
+                    <pre className="text-gray-300 text-xs sm:text-sm whitespace-pre-wrap break-words">
                       {`{
   "mcpServers": {
     "XcodeBuildMCP": {
@@ -551,12 +551,12 @@ export default function XcodeBuildMCPLanding() {
                 </CardHeader>
                 <CardContent>
                   <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm space-y-1">
-                    <div className="text-green-400 break-all">git clone https://github.com/</div>
-                    <div className="text-green-400 break-all">cameroncooke/XcodeBuildMCP</div>
-                    <div className="text-blue-400 break-all">cd XcodeBuildMCP && npm install</div>
+                    <div className="text-green-400 break-all text-xs sm:text-sm">git clone https://github.com/</div>
+                    <div className="text-green-400 break-all text-xs sm:text-sm">cameroncooke/XcodeBuildMCP</div>
+                    <div className="text-blue-400 break-all text-xs sm:text-sm">cd XcodeBuildMCP && npm install</div>
                   </div>
-                  <div className="bg-gray-900 rounded-lg p-4 mt-2 font-mono text-sm overflow-x-auto">
-                    <pre className="text-gray-300 text-xs sm:text-sm">
+                  <div className="bg-gray-900 rounded-lg p-4 mt-2 font-mono text-sm overflow-x-auto max-w-full">
+                    <pre className="text-gray-300 text-xs sm:text-sm whitespace-pre-wrap break-words">
                       {`{
   "mcpServers": {
     "XcodeBuildMCP": {
