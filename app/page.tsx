@@ -169,7 +169,7 @@ export default function XcodeBuildMCPLanding() {
 
             <div className="flex items-center space-x-4">
               <Link
-                href="https://github.com/cameroncooke/XcodeBuildMCP"
+                href="https://github.com/getsentry/XcodeBuildMCP"
                 className="hidden sm:flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
               >
                 <Github className="w-5 h-5" />
@@ -231,7 +231,7 @@ export default function XcodeBuildMCPLanding() {
                       Contributing
                     </button>
                     <Link
-                      href="https://github.com/cameroncooke/XcodeBuildMCP"
+                      href="https://github.com/getsentry/XcodeBuildMCP"
                       className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors text-lg"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -306,7 +306,7 @@ export default function XcodeBuildMCPLanding() {
                   className="border-gray-600 text-gray-300 hover:bg-gray-800 bg-transparent"
                   asChild
                 >
-                  <Link href="https://github.com/cameroncooke/XcodeBuildMCP">
+                  <Link href="https://github.com/getsentry/XcodeBuildMCP">
                     <Github className="w-5 h-5 mr-2" />
                     View on GitHub
                   </Link>
@@ -552,7 +552,7 @@ export default function XcodeBuildMCPLanding() {
                 <CardContent>
                   <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm space-y-1">
                     <div className="text-green-400 break-all text-xs sm:text-sm">git clone https://github.com/</div>
-                    <div className="text-green-400 break-all text-xs sm:text-sm">cameroncooke/XcodeBuildMCP</div>
+                    <div className="text-green-400 break-all text-xs sm:text-sm">getsentry/XcodeBuildMCP</div>
                     <div className="text-blue-400 break-all text-xs sm:text-sm">cd XcodeBuildMCP && npm install</div>
                   </div>
                   <div className="bg-gray-900 rounded-lg p-4 mt-2 font-mono text-sm overflow-x-auto max-w-full">
@@ -684,7 +684,7 @@ export default function XcodeBuildMCPLanding() {
                 <h3 className="text-lg font-semibold text-white mb-2">Contribute Code</h3>
                 <p className="text-gray-400 mb-4">Submit pull requests, fix bugs, or add new features</p>
                 <Button variant="outline" className="border-gray-600 text-gray-300 bg-transparent" asChild>
-                  <Link href="https://github.com/cameroncooke/XcodeBuildMCP/issues">
+                  <Link href="https://github.com/getsentry/XcodeBuildMCP/issues">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View Issues
                   </Link>
@@ -698,7 +698,7 @@ export default function XcodeBuildMCPLanding() {
                 <h3 className="text-lg font-semibold text-white mb-2">Contributing Guide</h3>
                 <p className="text-gray-400 mb-4">Learn how to set up your development environment and contribute</p>
                 <Button variant="outline" className="border-gray-600 text-gray-300 bg-transparent" asChild>
-                  <Link href="https://github.com/cameroncooke/XcodeBuildMCP/blob/main/CONTRIBUTING.md">
+                  <Link href="https://github.com/getsentry/XcodeBuildMCP/blob/main/CONTRIBUTING.md">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Read Guide
                   </Link>
@@ -723,19 +723,19 @@ export default function XcodeBuildMCPLanding() {
             </div>
 
             <p className="text-gray-400 text-center">
-              Made with ❤️ and AI by{" "}
-              <Link href="https://x.com/camsoft2000" className="text-blue-400 hover:text-blue-300 transition-colors">
-                Cameron Cooke (@camsoft2000)
+              Built by{" "}
+              <Link href="https://sentry.io" className="text-blue-400 hover:text-blue-300 transition-colors">
+                Sentry
               </Link>
             </p>
 
             <div className="flex items-center space-x-6">
               <Link
-                href="https://www.async-let.com/"
+                href="https://sentry.io"
                 className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
               >
-                <BookOpen className="w-4 h-4" />
-                <span>Blog</span>
+                <ExternalLink className="w-4 h-4" />
+                <span>Sentry</span>
               </Link>
               <Link
                 href="https://x.com/xcodebuildmcp"
@@ -747,7 +747,7 @@ export default function XcodeBuildMCPLanding() {
                 <span>@xcodebuildmcp</span>
               </Link>
               <Link
-                href="https://github.com/cameroncooke/XcodeBuildMCP"
+                href="https://github.com/getsentry/XcodeBuildMCP"
                 className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
               >
                 <Github className="w-4 h-4" />
@@ -755,7 +755,7 @@ export default function XcodeBuildMCPLanding() {
               </Link>
             </div>
 
-            <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} MIT License</p>
+            <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} Sentry. MIT License</p>
           </div>
         </div>
       </footer>
