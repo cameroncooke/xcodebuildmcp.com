@@ -722,13 +722,6 @@ export default function XcodeBuildMCPLanding() {
               </Badge>
             </div>
 
-            <p className="text-gray-400 text-center">
-              Built by{" "}
-              <Link href="https://sentry.io" className="text-blue-400 hover:text-blue-300 transition-colors">
-                Sentry
-              </Link>
-            </p>
-
             <div className="flex items-center space-x-6">
               <Link
                 href="https://sentry.io"
