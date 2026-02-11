@@ -274,9 +274,9 @@ export default function XcodeBuildMCPLanding() {
               </h1>
 
               <p className="text-xl text-gray-300 leading-relaxed">
-                Let AI assistants build, test, and debug your iOS apps autonomously. XcodeBuildMCP bridges the gap
-                between AI agents and Xcode, enabling intelligent development workflows that fix build errors, manage
-                simulators, and deploy to devices—all through natural language commands.
+                An MCP server and CLI that lets AI agents build, test, and debug your iOS and macOS apps autonomously.
+                XcodeBuildMCP bridges the gap between AI agents and Xcode, fixing build errors, managing simulators,
+                deploying to devices, and capturing logs through natural language or the command line.
               </p>
             </div>
 
@@ -338,7 +338,7 @@ export default function XcodeBuildMCPLanding() {
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold">Powerful Xcode Integration</h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Everything you need to integrate Xcode workflows with AI assistants and automation tools.
+              Everything you need to integrate Xcode workflows with AI assistants and the command line.
             </p>
           </div>
 
@@ -367,8 +367,8 @@ export default function XcodeBuildMCPLanding() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-center text-gray-400">
-                  From project creation to device deployment—manage the entire iOS development lifecycle through AI
-                  commands.
+                  From project creation to device deployment, manage the entire iOS and macOS development lifecycle
+                  through AI commands or the CLI.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -378,12 +378,12 @@ export default function XcodeBuildMCPLanding() {
                 <div className="w-12 h-12 bg-green-900 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-6 h-6 text-green-400" />
                 </div>
-                <CardTitle className="text-xl text-white">Lightning Fast Builds</CardTitle>
+                <CardTitle className="text-xl text-white">LLDB Debugging</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-center text-gray-400">
-                  Experimental incremental build support delivers blazing fast compilation times for rapid iteration
-                  cycles.
+                  Attach the debugger, set breakpoints, inspect the stack and variables, and execute LLDB commands
+                  directly from your AI agent.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -427,7 +427,7 @@ export default function XcodeBuildMCPLanding() {
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-center text-gray-400">
-                  Works with Cursor, Claude Desktop, VS Code, and any MCP-compatible client for maximum flexibility.
+                  Works with Cursor, Claude Code, VS Code, Windsurf, Xcode, and any MCP-compatible client.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -440,7 +440,7 @@ export default function XcodeBuildMCPLanding() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold">Getting Started</h2>
-            <p className="text-xl text-gray-400">No installation required - just configure your MCP client</p>
+            <p className="text-xl text-gray-400">Install via Homebrew or npm, then configure your MCP client</p>
           </div>
 
           <div className="max-w-4xl mx-auto space-y-8">
@@ -456,7 +456,7 @@ export default function XcodeBuildMCPLanding() {
   "mcpServers": {
     "XcodeBuildMCP": {
       "command": "npx",
-      "args": ["-y", "xcodebuildmcp@latest"]
+      "args": ["-y", "xcodebuildmcp@latest", "mcp"]
     }
   }
 }`}
@@ -472,7 +472,7 @@ export default function XcodeBuildMCPLanding() {
   "mcpServers": {
     "XcodeBuildMCP": {
       "command": "npx",
-      "args": ["-y", "xcodebuildmcp@latest"]
+      "args": ["-y", "xcodebuildmcp@latest", "mcp"]
     }
   }
 }`,
@@ -495,20 +495,21 @@ export default function XcodeBuildMCPLanding() {
                 <CardHeader>
                   <CardTitle className="text-white flex items-center">
                     <Terminal className="w-5 h-5 mr-2" />
-                    Global NPM Installation
+                    Homebrew Installation
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm">
-                    <div className="text-green-400 break-all text-xs sm:text-sm">npm install -g xcodebuildmcp</div>
+                  <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm space-y-1">
+                    <div className="text-green-400 break-all text-xs sm:text-sm">brew tap getsentry/xcodebuildmcp</div>
+                    <div className="text-green-400 break-all text-xs sm:text-sm">brew install xcodebuildmcp</div>
                   </div>
                   <div className="bg-gray-900 rounded-lg p-4 mt-2 font-mono text-sm overflow-x-auto max-w-full">
                     <pre className="text-gray-300 text-xs sm:text-sm whitespace-pre-wrap break-words">
                       {`{
   "mcpServers": {
     "XcodeBuildMCP": {
-      "command": "node",
-      "args": ["xcodebuildmcp"]
+      "command": "xcodebuildmcp",
+      "args": ["mcp"]
     }
   }
 }`}
@@ -523,8 +524,8 @@ export default function XcodeBuildMCPLanding() {
                         `{
   "mcpServers": {
     "XcodeBuildMCP": {
-      "command": "node",
-      "args": ["xcodebuildmcp"]
+      "command": "xcodebuildmcp",
+      "args": ["mcp"]
     }
   }
 }`,
@@ -561,7 +562,7 @@ export default function XcodeBuildMCPLanding() {
   "mcpServers": {
     "XcodeBuildMCP": {
       "command": "node",
-      "args": ["path/to/xcodebuildmcp/build/index.js"]
+      "args": ["path/to/xcodebuildmcp/build/cli.js", "mcp"]
     }
   }
 }`}
@@ -577,7 +578,7 @@ export default function XcodeBuildMCPLanding() {
   "mcpServers": {
     "XcodeBuildMCP": {
       "command": "node",
-      "args": ["path/to/xcodebuildmcp/build/index.js"]
+      "args": ["path/to/xcodebuildmcp/build/cli.js", "mcp"]
     }
   }
 }`,
@@ -698,7 +699,7 @@ export default function XcodeBuildMCPLanding() {
                 <h3 className="text-lg font-semibold text-white mb-2">Contributing Guide</h3>
                 <p className="text-gray-400 mb-4">Learn how to set up your development environment and contribute</p>
                 <Button variant="outline" className="border-gray-600 text-gray-300 bg-transparent" asChild>
-                  <Link href="https://github.com/getsentry/XcodeBuildMCP/blob/main/CONTRIBUTING.md">
+                  <Link href="https://github.com/getsentry/XcodeBuildMCP/blob/main/docs/dev/CONTRIBUTING.md">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Read Guide
                   </Link>
