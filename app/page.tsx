@@ -95,6 +95,8 @@ export default function XcodeBuildMCPLanding() {
   }
 }`
 
+  const npmGlobalInstall = "npm install -g xcodebuildmcp@latest"
+
   return (
     <div className="min-h-screen bg-sentry-dark-100 text-sentry-text-primary">
       {/* Header */}
@@ -613,7 +615,7 @@ sessionDefaults:
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Get started in seconds</h2>
             <p className="text-sentry-text-secondary text-lg">
-              Add XcodeBuildMCP to your MCP client configuration.
+              Install XcodeBuildMCP as an MCP server for AI coding agents, or globally for CLI use.
             </p>
           </div>
 
@@ -635,9 +637,9 @@ sessionDefaults:
               ))}
             </div>
 
-            <div className="p-6">
+            <div className="p-6 space-y-6">
               {activeInstallTab === "homebrew" && (
-                <div className="mb-4">
+                <div>
                   <p className="text-sm text-sentry-text-secondary mb-3">Install via Homebrew:</p>
                   <div className="flex items-center gap-2 bg-sentry-dark-100 rounded-lg p-3 font-mono text-sm">
                     <code className="text-green-400 flex-1">
@@ -657,30 +659,70 @@ sessionDefaults:
                 </div>
               )}
 
-              <p className="text-sm text-sentry-text-secondary mb-3">
-                {activeInstallTab === "npx"
-                  ? "Add to your MCP client configuration:"
-                  : "Then add to your MCP client configuration:"}
-              </p>
-              <div className="relative bg-sentry-dark-100 rounded-lg p-4 font-mono text-sm">
-                <button
-                  onClick={() =>
-                    copyToClipboard(
-                      activeInstallTab === "npx" ? npxConfig : homebrewConfig,
-                      "config",
-                    )
-                  }
-                  className="absolute top-3 right-3 p-1.5 rounded hover:bg-sentry-dark-400 transition-colors"
-                >
-                  {copiedText === "config" ? (
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                  ) : (
-                    <Copy className="w-4 h-4 text-sentry-text-muted" />
-                  )}
-                </button>
-                <pre className="text-sentry-text-primary text-xs sm:text-sm overflow-x-auto">
-                  {activeInstallTab === "npx" ? npxConfig : homebrewConfig}
-                </pre>
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-sentry-purple/10 text-sentry-purple-light border border-sentry-purple/20">
+                    MCP server
+                  </span>
+                  <p className="text-sm text-sentry-text-secondary">
+                    {activeInstallTab === "npx"
+                      ? "Add to your MCP client configuration:"
+                      : "Then add to your MCP client configuration:"}
+                  </p>
+                </div>
+                <div className="relative bg-sentry-dark-100 rounded-lg p-4 font-mono text-sm">
+                  <button
+                    onClick={() =>
+                      copyToClipboard(
+                        activeInstallTab === "npx" ? npxConfig : homebrewConfig,
+                        "config",
+                      )
+                    }
+                    className="absolute top-3 right-3 p-1.5 rounded hover:bg-sentry-dark-400 transition-colors"
+                  >
+                    {copiedText === "config" ? (
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                    ) : (
+                      <Copy className="w-4 h-4 text-sentry-text-muted" />
+                    )}
+                  </button>
+                  <pre className="text-sentry-text-primary text-xs sm:text-sm overflow-x-auto">
+                    {activeInstallTab === "npx" ? npxConfig : homebrewConfig}
+                  </pre>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-green-400/10 text-green-400 border border-green-400/20">
+                    CLI
+                  </span>
+                  <p className="text-sm text-sentry-text-secondary">
+                    {activeInstallTab === "npx"
+                      ? "Install globally for direct terminal use:"
+                      : "The CLI is ready to use after installing:"}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 bg-sentry-dark-100 rounded-lg p-3 font-mono text-sm">
+                  <code className="text-green-400 flex-1">
+                    {activeInstallTab === "npx" ? npmGlobalInstall : "xcodebuildmcp --help"}
+                  </code>
+                  <button
+                    onClick={() =>
+                      copyToClipboard(
+                        activeInstallTab === "npx" ? npmGlobalInstall : "xcodebuildmcp --help",
+                        "cli",
+                      )
+                    }
+                    className="p-1.5 rounded hover:bg-sentry-dark-400 transition-colors shrink-0"
+                  >
+                    {copiedText === "cli" ? (
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                    ) : (
+                      <Copy className="w-4 h-4 text-sentry-text-muted" />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
