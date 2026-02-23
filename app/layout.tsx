@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     url: "https://xcodebuildmcp.com",
     images: [
       {
-        url: "/banner.png",
-        width: 1536,
-        height: 595,
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
         alt: "XcodeBuildMCP",
       },
     ],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "XcodeBuildMCP - AI-Powered Xcode Automation",
     description:
       "Let AI assistants build, test, and debug your iOS apps autonomously. XcodeBuildMCP bridges the gap between AI agents and Xcode.",
-    images: ["/banner.png"],
+    images: ["/og-image.png"],
   },
 }
 
