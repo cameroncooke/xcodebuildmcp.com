@@ -33,7 +33,7 @@ interface GitHubStats {
 
 export default function XcodeBuildMCPLanding() {
   const [githubStats, setGithubStats] = useState<GitHubStats>({ stars: 1900, forks: 77 })
-  const [npmVersion, setNpmVersion] = useState("v1.10.4")
+  const [npmVersion, setNpmVersion] = useState("")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [copiedText, setCopiedText] = useState<string | null>(null)
   const [activeInstallTab, setActiveInstallTab] = useState<"npx" | "homebrew">("npx")
@@ -170,7 +170,7 @@ export default function XcodeBuildMCPLanding() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-sentry-dark-600 bg-sentry-dark-400/50 text-sm text-sentry-text-secondary">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            {npmVersion.startsWith("v") ? npmVersion : `v${npmVersion}`} available now
+            {npmVersion ? `${npmVersion.startsWith("v") ? npmVersion : `v${npmVersion}`} ` : ""}available now
           </div>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6">

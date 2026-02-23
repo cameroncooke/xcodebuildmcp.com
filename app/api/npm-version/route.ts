@@ -12,6 +12,6 @@ export async function GET() {
     return NextResponse.json({ version: data.version })
   } catch (error) {
     console.error("Error fetching NPM version:", error)
-    return NextResponse.json({ version: "v1.10.4" }) // Fallback value
+    return NextResponse.json({ version: "" })
   }
 }
