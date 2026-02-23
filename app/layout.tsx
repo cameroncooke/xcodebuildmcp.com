@@ -3,9 +3,32 @@ import type { Metadata } from "next"
 import "./globals.css"
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://xcodebuildmcp.com"),
   title: "XcodeBuildMCP - AI-Powered Xcode Automation",
   description:
     "Let AI assistants build, test, and debug your iOS apps autonomously. XcodeBuildMCP bridges the gap between AI agents and Xcode.",
+  openGraph: {
+    title: "XcodeBuildMCP - AI-Powered Xcode Automation",
+    description:
+      "Let AI assistants build, test, and debug your iOS apps autonomously. XcodeBuildMCP bridges the gap between AI agents and Xcode.",
+    type: "website",
+    url: "https://xcodebuildmcp.com",
+    images: [
+      {
+        url: "/banner.png",
+        width: 1536,
+        height: 595,
+        alt: "XcodeBuildMCP",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "XcodeBuildMCP - AI-Powered Xcode Automation",
+    description:
+      "Let AI assistants build, test, and debug your iOS apps autonomously. XcodeBuildMCP bridges the gap between AI agents and Xcode.",
+    images: ["/banner.png"],
+  },
 }
 
 export default function RootLayout({
