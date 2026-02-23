@@ -347,7 +347,7 @@ export default function XcodeBuildMCPLanding() {
                     playsInline
                     preload="metadata"
                   >
-                    <source src={video.src} type="video/mp4" />
+                    <source src={`${video.src}#t=0.001`} type="video/mp4" />
                   </video>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                     <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
